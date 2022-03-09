@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer _sprite;
 
     public GameObject indicator;
+    public GameObject stickyIn;
 
     public int speed = 10;
     private float moving;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
 
     public int jumpHeight = 500;
     public bool grounded;
+    public bool grouped;
 
     public bool reselected;
     private bool sticky;
@@ -33,14 +35,34 @@ public class Player : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
 
         indicator.SetActive(false);
+        stickyIn.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && !grouped)
         {
-            this.gameObject.transform.position = ChosenGummy.chosenPlayer.transform.position;
+            grouped = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Return) && grouped)
+        {
+            grouped = false;
+        }
+
+        if (grouped)
+        {
+            if (this.gameObject != ChosenGummy.chosenPlayer)
+            {
+                sticky = false;
+                _body.constraints = RigidbodyConstraints2D.FreezeAll;
+                _box.enabled = false;
+                this.gameObject.transform.position = new Vector3(ChosenGummy.chosenPlayer.transform.position.x, ChosenGummy.chosenPlayer.transform.position.y + 2, ChosenGummy.chosenPlayer.transform.position.z);
+            }
+        }
+        else
+        {
+            _box.enabled = true;
         }
 
         if (this.gameObject == ChosenGummy.chosenPlayer)
@@ -54,11 +76,13 @@ public class Player : MonoBehaviour
             else if (Input.GetMouseButtonDown(1) && sticky)
             {
                 sticky = false;
+                stickyIn.SetActive(false);
             }
 
             if (sticky)
             {
                 inputs = false;
+                stickyIn.SetActive(true);
             }
 
             if (inputs)
@@ -129,7 +153,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             inputs = true;
-            sticky = false;
+            //sticky = false;
             _body.velocity = new Vector2(moving, 0);
             _body.AddForce(Vector2.up * jumpHeight);
         }
