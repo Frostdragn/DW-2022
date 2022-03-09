@@ -28,10 +28,9 @@ public class ChosenGummy : MonoBehaviour
         {
             mouseInput = true;
             Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-            if (targetObject.gameObject.layer == 7)
+            if (targetObject != null && targetObject.gameObject.layer == 7)
             {
                 chosenPlayer = targetObject.transform.gameObject;
-                Debug.Log(chosenPlayer);
             }
             else
             {

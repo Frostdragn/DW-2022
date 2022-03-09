@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public bool reselected;
     private bool sticky;
     private bool inputs;
+    private bool floating;
 
     public static Vector3 playerPos;
     // Start is called before the first frame update
@@ -37,6 +38,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            this.gameObject.transform.position = ChosenGummy.chosenPlayer.transform.position;
+        }
 
         if (this.gameObject == ChosenGummy.chosenPlayer)
         {
@@ -88,11 +93,13 @@ public class Player : MonoBehaviour
         if (Input.GetKey("d"))
         {
             inputs = true;
+            //sticky = false;
             _body.velocity = new Vector2(speed, jumping);
         }
         else if (Input.GetKeyUp("d") && !Input.GetKey("a"))
         {
             inputs = true;
+            //sticky = false;
             _body.velocity = new Vector2((moving / 2), jumping);
         }
 
@@ -109,6 +116,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey("a"))
         {
             inputs = true;
+            //sticky = false;
             _body.velocity = new Vector2(-speed, jumping);
         }
         else if (Input.GetKeyUp("a") && !Input.GetKey("d"))
@@ -121,6 +129,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             inputs = true;
+            sticky = false;
             _body.velocity = new Vector2(moving, 0);
             _body.AddForce(Vector2.up * jumpHeight);
         }
@@ -136,14 +145,18 @@ public class Player : MonoBehaviour
 
             if (this.gameObject != ChosenGummy.chosenPlayer)
             {
-                _body.constraints = RigidbodyConstraints2D.FreezeAll;
-                Debug.Log("being called on" + this.gameObject.name);
+                if (sticky)
+                {
+                    _body.constraints = RigidbodyConstraints2D.FreezeAll;
+                }
             }
-            else if (this.gameObject == ChosenGummy.chosenPlayer)
+
+            if (this.gameObject == ChosenGummy.chosenPlayer)
             {
                 if (sticky)
                 {
                     _body.constraints = RigidbodyConstraints2D.FreezeAll;
+
                 }
                 else
                 {
@@ -157,10 +170,13 @@ public class Player : MonoBehaviour
         {
             if (this.gameObject != ChosenGummy.chosenPlayer)
             {
-                _body.constraints = RigidbodyConstraints2D.FreezeAll;
-                Debug.Log("being called on" + this.gameObject.name);
+                if (sticky)
+                {
+                    _body.constraints = RigidbodyConstraints2D.FreezeAll;
+                }
             }
-            else if (this.gameObject == ChosenGummy.chosenPlayer)
+
+            if (this.gameObject == ChosenGummy.chosenPlayer)
             {
                 if (sticky)
                 {
