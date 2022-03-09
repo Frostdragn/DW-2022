@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     public bool reselected;
     private bool sticky;
+    private bool inputs;
 
     public static Vector3 playerPos;
     // Start is called before the first frame update
@@ -39,9 +40,29 @@ public class Player : MonoBehaviour
 
         if (this.gameObject == ChosenGummy.chosenPlayer)
         {
-            _body.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
-            indicator.SetActive(true);
             Movement();
+            if (Input.GetMouseButtonDown(1) && !sticky)
+            {
+                sticky = true;
+                //_body.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+            else if (Input.GetMouseButtonDown(1) && sticky)
+            {
+                sticky = false;
+            }
+
+            if (sticky)
+            {
+                inputs = false;
+            }
+
+            if (inputs)
+            {
+                _body.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+            }
+
+            indicator.SetActive(true);
+
         }
         else
         {
@@ -66,10 +87,12 @@ public class Player : MonoBehaviour
         //}
         if (Input.GetKey("d"))
         {
+            inputs = true;
             _body.velocity = new Vector2(speed, jumping);
         }
         else if (Input.GetKeyUp("d") && !Input.GetKey("a"))
         {
+            inputs = true;
             _body.velocity = new Vector2((moving / 2), jumping);
         }
 
@@ -85,16 +108,19 @@ public class Player : MonoBehaviour
         //}
         if (Input.GetKey("a"))
         {
+            inputs = true;
             _body.velocity = new Vector2(-speed, jumping);
         }
         else if (Input.GetKeyUp("a") && !Input.GetKey("d"))
         {
+            inputs = true;
             _body.velocity = new Vector2((moving / 2), jumping);
         }
 
         //jumping
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
+            inputs = true;
             _body.velocity = new Vector2(moving, 0);
             _body.AddForce(Vector2.up * jumpHeight);
         }
@@ -115,18 +141,36 @@ public class Player : MonoBehaviour
             }
             else if (this.gameObject == ChosenGummy.chosenPlayer)
             {
-                _body.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+                if (sticky)
+                {
+                    _body.constraints = RigidbodyConstraints2D.FreezeAll;
+                }
+                else
+                {
+                    _body.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+                }
+                
             }
         }
 
         if (collision.gameObject.layer == 8)
         {
-            if (this.gameObject == ChosenGummy.chosenPlayer && !grounded)
+            if (this.gameObject != ChosenGummy.chosenPlayer)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                _body.constraints = RigidbodyConstraints2D.FreezeAll;
+                Debug.Log("being called on" + this.gameObject.name);
+            }
+            else if (this.gameObject == ChosenGummy.chosenPlayer)
+            {
+                if (sticky)
                 {
                     _body.constraints = RigidbodyConstraints2D.FreezeAll;
                 }
+                else
+                {
+                    _body.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+                }
+
             }
         }
     }
