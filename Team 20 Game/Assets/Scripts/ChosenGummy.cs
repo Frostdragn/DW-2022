@@ -20,27 +20,31 @@ public class ChosenGummy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GummyNumbers();
-
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetMouseButtonDown(0))
+        if (!Player.grouped)
         {
-            mouseInput = true;
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-            if (targetObject != null && targetObject.gameObject.layer == 7)
+            GummyNumbers();
+
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (Input.GetMouseButtonDown(0))
             {
-                chosenPlayer = targetObject.transform.gameObject;
+                mouseInput = true;
+                Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+                if (targetObject != null && targetObject.gameObject.layer == 7)
+                {
+                    chosenPlayer = targetObject.transform.gameObject;
+                }
+                else
+                {
+                    //chosenPlayer = chosenPlayer;
+                }
             }
-            else
+            if (!mouseInput)
             {
                 chosenPlayer = gummies[gummyChoice];
             }
         }
-        if (!mouseInput)
-        {
-            chosenPlayer = gummies[gummyChoice];
-        }
+
     }
 
     public void GummyNumbers()
