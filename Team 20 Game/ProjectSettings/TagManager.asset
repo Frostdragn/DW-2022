@@ -19,7 +19,7 @@ TagManager:
   - Ground
   - Gummy Bears
   - Wall
-  - 
+  - Asset
   - 
   - 
   - 
@@ -45,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 3284576047
     locked: 0
