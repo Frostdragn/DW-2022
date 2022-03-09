@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Gummy1
+  - Gummy2
+  - Gummy3
+  - Gummy4
+  - Gummy5
   layers:
   - Default
   - TransparentFX
@@ -11,9 +16,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Ground
+  - Gummy Bears
+  - Wall
   - 
   - 
   - 
