@@ -90,7 +90,6 @@ public class Player : MonoBehaviour
             {
                 stickyIn.SetActive(false);
                 _body.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
-                Debug.Log("Player should be falling");
             }
 
             if (inputs)
