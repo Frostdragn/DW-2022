@@ -120,6 +120,7 @@ public class Player : MonoBehaviour
         else
         {
             indicator.SetActive(false);
+            _anim.SetBool("Walking", false);
         }
     }
 

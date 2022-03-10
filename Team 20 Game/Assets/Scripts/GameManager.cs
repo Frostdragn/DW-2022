@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +12,12 @@ public class GameManager : MonoBehaviour
     public GameObject puzz1b2;
     public GameObject puzz1b3;
     public GameObject puzz1Gate;
+    public GameObject puzz1Bear;
     public static bool puzz1Solved;
-    private bool puzz1Check;
+
+    public GameObject redBear;
+    public static bool redBearFree;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            Debug.Log(Input.mouseScrollDelta.y);
+        }
         bool tutorB = tutorButton.GetComponent<ButtonScript>().pressed;
 
         if (tutorB)
@@ -33,6 +42,12 @@ public class GameManager : MonoBehaviour
             tutorWall.SetActive(true);
         }
 
+        Puzzle1();
+
+    }
+
+    public void Puzzle1()
+    {
         bool puzz1B1 = puzz1b1.GetComponent<ButtonScript>().pressed;
         bool puzz1B2 = puzz1b2.GetComponent<ButtonScript>().pressed;
         bool puzz1B3 = puzz1b3.GetComponent<ButtonScript>().pressed;
@@ -40,6 +55,7 @@ public class GameManager : MonoBehaviour
         if (puzz1B1 && puzz1B2 && puzz1B3 && ChosenGummy.gummiesTotal == 3)
         {
             puzz1Gate.SetActive(false);
+            puzz1Bear.SetActive(false);
             puzz1Solved = true;
         }
         else if (puzz1B1 && puzz1B2 && puzz1B3 && ChosenGummy.gummiesTotal == 4)
@@ -49,6 +65,11 @@ public class GameManager : MonoBehaviour
         else
         {
             puzz1Gate.SetActive(true);
+        }
+
+        if (redBear.transform.position.x > 113)
+        {
+            redBearFree = true;
         }
     }
 }

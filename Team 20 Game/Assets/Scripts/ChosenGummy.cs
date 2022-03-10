@@ -58,7 +58,7 @@ public class ChosenGummy : MonoBehaviour
     {
         if (gummiesTotal == 3)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.mouseScrollDelta.y == 1)
             {
                 mouseInput = false;
                 if (gummyChoice < 2)
@@ -70,7 +70,7 @@ public class ChosenGummy : MonoBehaviour
                     gummyChoice = 0;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.mouseScrollDelta.y == -1)
             {
                 mouseInput = false;
                 if (gummyChoice > 0)
@@ -102,7 +102,7 @@ public class ChosenGummy : MonoBehaviour
         else if (gummiesTotal == 4)
         {
             gummies[3].SetActive(true);
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.mouseScrollDelta.y == 1)
             {
                 mouseInput = false;
                 if (gummyChoice < 3)
@@ -114,7 +114,7 @@ public class ChosenGummy : MonoBehaviour
                     gummyChoice = 0;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.mouseScrollDelta.y == -1)
             {
                 mouseInput = false;
                 if (gummyChoice > 0)
@@ -152,7 +152,7 @@ public class ChosenGummy : MonoBehaviour
         {
             gummies[4].SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.mouseScrollDelta.y == 1)
             {
                 mouseInput = false;
                 if (gummyChoice < 4)
@@ -164,7 +164,7 @@ public class ChosenGummy : MonoBehaviour
                     gummyChoice = 0;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.mouseScrollDelta.y == -1)
             {
                 mouseInput = false;
                 if (gummyChoice > 0)
