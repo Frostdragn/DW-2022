@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     public GameObject stickyIn;
     public GameObject bearBag;
 
+    public static bool tutorSolved;
+    public static bool tutorClear;
+
     public int speed = 10;
     private float moving;
     private float jumping;
@@ -44,11 +47,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && !grouped)
-        {
-            grouped = true;
-        }
-        else if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && grouped)
+
+        //if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && !grouped)
+        //{
+        //    grouped = true;
+        //}
+        if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && grouped)
         {
             grouped = false;
         }

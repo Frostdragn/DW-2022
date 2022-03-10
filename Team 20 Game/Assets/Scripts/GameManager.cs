@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     public GameObject redBear;
     public static bool redBearFree;
 
+    //public GameObject bag1;
+    public GameObject bag2;
+    public GameObject bag3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +31,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.mouseScrollDelta.y != 0)
-        {
-            Debug.Log(Input.mouseScrollDelta.y);
-        }
+        Bags();
+
         bool tutorB = tutorButton.GetComponent<ButtonScript>().pressed;
 
         if (tutorB)
@@ -44,6 +46,28 @@ public class GameManager : MonoBehaviour
 
         Puzzle1();
 
+    }
+
+    public void Bags()
+    {
+        if (!Player.grouped)
+        {
+            if (redBearFree)
+            {
+                bag2.SetActive(true);
+                bag3.SetActive(true);
+            }
+            else
+            {
+                bag2.SetActive(false);
+                bag3.SetActive(false);
+            }
+        }
+        else
+        {
+            bag2.SetActive(false);
+            bag3.SetActive(false);
+        }
     }
 
     public void Puzzle1()

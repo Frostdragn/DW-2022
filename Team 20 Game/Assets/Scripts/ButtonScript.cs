@@ -7,6 +7,8 @@ public class ButtonScript : MonoBehaviour
     public bool pressed;
 
     public SpriteRenderer button;
+    public Sprite red;
+    public Sprite green;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class ButtonScript : MonoBehaviour
         if (collision.gameObject.layer == 7)
         {
             pressed = true;
-            button.color = Color.green;
+            button.sprite = green;
         }
     }
 
@@ -38,7 +40,7 @@ public class ButtonScript : MonoBehaviour
         if (collision.gameObject.layer == 7)
         {
             pressed = true;
-            button.color = Color.green;
+            button.sprite = green;
         }
     }
 
@@ -49,7 +51,7 @@ public class ButtonScript : MonoBehaviour
         if (collision.gameObject.layer == 7)
         {
             pressed = false;
-            button.color = Color.red;
+            button.sprite = red;
         }
     }
 }
