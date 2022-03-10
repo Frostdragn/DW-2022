@@ -10,12 +10,13 @@ public class Player : MonoBehaviour
 
     public GameObject indicator;
     public GameObject stickyIn;
+    public GameObject bearBag;
 
     public int speed = 10;
     private float moving;
     private float jumping;
-    //private bool faceRight;
-    //private bool faceLeft;
+    private bool faceRight;
+    private bool faceLeft;
 
     public int jumpHeight = 500;
     public bool grounded;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
 
         indicator.SetActive(false);
         stickyIn.SetActive(false);
+        bearBag.SetActive(false);
     }
 
     // Update is called once per frame
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour
         }
 
         if (grouped)
-        {
+        {        
             if (this.gameObject != ChosenGummy.chosenPlayer)
             {
                 sticky = false;
@@ -60,9 +62,14 @@ public class Player : MonoBehaviour
                 _box.enabled = false;
                 this.gameObject.transform.position = new Vector3(ChosenGummy.chosenPlayer.transform.position.x, ChosenGummy.chosenPlayer.transform.position.y + 2, ChosenGummy.chosenPlayer.transform.position.z);
             }
+            else
+            {
+                bearBag.SetActive(true);
+            }
         }
         else
         {
+            bearBag.SetActive(false);
             _box.enabled = true;
         }
 
@@ -70,10 +77,18 @@ public class Player : MonoBehaviour
         {
             Movement();
 
+            if (faceLeft)
+            {
+                //transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else if (faceRight)
+            {
+                //transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
             if (Input.GetMouseButtonDown(1) && !sticky)
             {
                 sticky = true;
-                //_body.constraints = RigidbodyConstraints2D.FreezeAll;
             }
             else if (Input.GetMouseButtonDown(1) && sticky)
             {
@@ -111,16 +126,16 @@ public class Player : MonoBehaviour
         moving = _body.velocity.x;
         jumping = _body.velocity.y;
 
-        //if (Input.GetKeyDown("d"))
-        //{
-        //    faceRight = true;
-        //    faceLeft = false;
-        //}
-        //if (Input.GetKeyUp("d") && Input.GetKey("a"))
-        //{
-        //    faceRight = false;
-        //    faceLeft = true;
-        //}
+        if (Input.GetKeyDown("d"))
+        {
+            faceRight = true;
+            faceLeft = false;
+        }
+        if (Input.GetKeyUp("d") && Input.GetKey("a"))
+        {
+            faceRight = false;
+            faceLeft = true;
+        }
         if (Input.GetKey("d"))
         {
             inputs = true;
@@ -134,16 +149,16 @@ public class Player : MonoBehaviour
             _body.velocity = new Vector2((moving / 2), jumping);
         }
 
-        //if (Input.GetKeyDown("a"))
-        //{
-        //    faceRight = false;
-        //    faceLeft = true;
-        //}
-        //if (Input.GetKeyUp("a") && Input.GetKey("d"))
-        //{
-        //    faceRight = true;
-        //    faceLeft = false;
-        //}
+        if (Input.GetKeyDown("a"))
+        {
+            faceRight = false;
+            faceLeft = true;
+        }
+        if (Input.GetKeyUp("a") && Input.GetKey("d"))
+        {
+            faceRight = true;
+            faceLeft = false;
+        }
         if (Input.GetKey("a"))
         {
             inputs = true;
