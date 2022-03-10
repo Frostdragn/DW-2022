@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private SpriteRenderer _sprite;
+    public Animator _anim;
 
     public GameObject indicator;
     public GameObject stickyIn;
@@ -126,6 +127,15 @@ public class Player : MonoBehaviour
     {
         moving = _body.velocity.x;
         jumping = _body.velocity.y;
+
+        if (moving > 0.5f || moving < -0.5f)
+        {
+            _anim.SetBool("Walking", true);
+        }
+        else
+        {
+            _anim.SetBool("Walking", false);
+        }
 
         if (Input.GetKeyDown("d"))
         {
