@@ -17,11 +17,19 @@ public class ChosenGummy : MonoBehaviour
     void Start()
     {
         gummiesTotal = 3;
+        gummies[3].SetActive(false);
+        gummies[4].SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.puzz1Solved)
+        {
+            gummiesTotal += 1;
+            GameManager.puzz1Solved = false;
+        }
+
         if (!Player.grouped)
         {
             GummyNumbers();
@@ -36,22 +44,19 @@ public class ChosenGummy : MonoBehaviour
                 {
                     chosenPlayer = targetObject.transform.gameObject;
                 }
-                else
-                {
-                    //chosenPlayer = chosenPlayer;
-                }
             }
+
             if (!mouseInput)
             {
                 chosenPlayer = gummies[gummyChoice];
             }
-        }
-
     }
+
+}
 
     public void GummyNumbers()
     {
-        if (gummiesTotal <= 3)
+        if (gummiesTotal == 3)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -94,8 +99,9 @@ public class ChosenGummy : MonoBehaviour
                 gummyChoice = 2;
             }
         }
-        else if (gummiesTotal <= 4)
+        else if (gummiesTotal == 4)
         {
+            gummies[3].SetActive(true);
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 mouseInput = false;
@@ -142,8 +148,10 @@ public class ChosenGummy : MonoBehaviour
                 gummyChoice = 3;
             }
         }
-        else
+        else if (gummiesTotal == 5)
         {
+            gummies[4].SetActive(true);
+
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 mouseInput = false;
