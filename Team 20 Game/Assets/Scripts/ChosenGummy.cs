@@ -8,93 +8,200 @@ public class ChosenGummy : MonoBehaviour
     private int gummyChoice = 0;
     private bool mouseInput;
 
+    public static int gummiesTotal;
+
     public static GameObject chosenPlayer;
     Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gummiesTotal = 3;
+        gummies[3].SetActive(false);
+        gummies[4].SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GummyNumbers();
-
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetMouseButtonDown(0))
+        if (GameManager.puzz1Solved)
         {
-            mouseInput = true;
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-            if (targetObject.gameObject.layer == 7)
+            gummiesTotal += 1;
+            GameManager.puzz1Solved = false;
+        }
+
+        if (!Player.grouped)
+        {
+            GummyNumbers();
+
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (Input.GetMouseButtonDown(0))
             {
-                chosenPlayer = targetObject.transform.gameObject;
-                Debug.Log(chosenPlayer);
+                mouseInput = true;
+                Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+                if (targetObject != null && targetObject.gameObject.layer == 7)
+                {
+                    chosenPlayer = targetObject.transform.gameObject;
+                }
             }
-            else
+
+            if (!mouseInput)
             {
                 chosenPlayer = gummies[gummyChoice];
             }
-        }
-        if (!mouseInput)
-        {
-            chosenPlayer = gummies[gummyChoice];
-        }
     }
+
+}
 
     public void GummyNumbers()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (gummiesTotal == 3)
         {
-            mouseInput = false;
-            if (gummyChoice < 4)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                gummyChoice += 1;
+                mouseInput = false;
+                if (gummyChoice < 2)
+                {
+                    gummyChoice += 1;
+                }
+                else
+                {
+                    gummyChoice = 0;
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                mouseInput = false;
+                if (gummyChoice > 0)
+                {
+                    gummyChoice -= 1;
+                }
+                else
+                {
+                    gummyChoice = 2;
+                }
+            }
+
+            if (Input.GetKeyDown("1"))
+            {
+                mouseInput = false;
                 gummyChoice = 0;
             }
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            mouseInput = false;
-            if (gummyChoice > 0)
+            if (Input.GetKeyDown("2"))
             {
-                gummyChoice -= 1;
+                mouseInput = false;
+                gummyChoice = 1;
             }
-            else
+            if (Input.GetKeyDown("3"))
             {
+                mouseInput = false;
+                gummyChoice = 2;
+            }
+        }
+        else if (gummiesTotal == 4)
+        {
+            gummies[3].SetActive(true);
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                mouseInput = false;
+                if (gummyChoice < 3)
+                {
+                    gummyChoice += 1;
+                }
+                else
+                {
+                    gummyChoice = 0;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                mouseInput = false;
+                if (gummyChoice > 0)
+                {
+                    gummyChoice -= 1;
+                }
+                else
+                {
+                    gummyChoice = 3;
+                }
+            }
+
+            if (Input.GetKeyDown("1"))
+            {
+                mouseInput = false;
+                gummyChoice = 0;
+            }
+            if (Input.GetKeyDown("2"))
+            {
+                mouseInput = false;
+                gummyChoice = 1;
+            }
+            if (Input.GetKeyDown("3"))
+            {
+                mouseInput = false;
+                gummyChoice = 2;
+            }
+            if (Input.GetKeyDown("4"))
+            {
+                mouseInput = false;
+                gummyChoice = 3;
+            }
+        }
+        else if (gummiesTotal == 5)
+        {
+            gummies[4].SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                mouseInput = false;
+                if (gummyChoice < 4)
+                {
+                    gummyChoice += 1;
+                }
+                else
+                {
+                    gummyChoice = 0;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                mouseInput = false;
+                if (gummyChoice > 0)
+                {
+                    gummyChoice -= 1;
+                }
+                else
+                {
+                    gummyChoice = 4;
+                }
+            }
+
+            if (Input.GetKeyDown("1"))
+            {
+                mouseInput = false;
+                gummyChoice = 0;
+            }
+            if (Input.GetKeyDown("2"))
+            {
+                mouseInput = false;
+                gummyChoice = 1;
+            }
+            if (Input.GetKeyDown("3"))
+            {
+                mouseInput = false;
+                gummyChoice = 2;
+            }
+            if (Input.GetKeyDown("4"))
+            {
+                mouseInput = false;
+                gummyChoice = 3;
+            }
+            if (Input.GetKeyDown("5"))
+            {
+                mouseInput = false;
                 gummyChoice = 4;
             }
-        }
-
-        if (Input.GetKeyDown("1"))
-        {
-            mouseInput = false;
-            gummyChoice = 0;
-        }
-        if (Input.GetKeyDown("2"))
-        {
-            mouseInput = false;
-            gummyChoice = 1;
-        }
-        if (Input.GetKeyDown("3"))
-        {
-            mouseInput = false;
-            gummyChoice = 2;
-        }
-        if (Input.GetKeyDown("4"))
-        {
-            mouseInput = false;
-            gummyChoice = 3;
-        }
-        if (Input.GetKeyDown("5"))
-        {
-            mouseInput = false;
-            gummyChoice = 4;
         }
     }
 }
