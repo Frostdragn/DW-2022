@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     public bool grounded;
     public static bool grouped;
 
-    public bool reselected;
     private bool sticky;
     private bool inputs;
     private bool floating;
@@ -38,16 +37,17 @@ public class Player : MonoBehaviour
         indicator.SetActive(false);
         stickyIn.SetActive(false);
         bearBag.SetActive(false);
+        grouped = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && !grouped)
+        if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && !grouped)
         {
             grouped = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Return) && grouped)
+        else if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && grouped)
         {
             grouped = false;
         }
@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
                 _body.constraints = RigidbodyConstraints2D.FreezeAll;
                 _box.enabled = false;
                 this.gameObject.transform.position = new Vector3(ChosenGummy.chosenPlayer.transform.position.x, ChosenGummy.chosenPlayer.transform.position.y + 2, ChosenGummy.chosenPlayer.transform.position.z);
+
             }
             else
             {
