@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour
     public GameObject redBear;
     public static bool redBearFree;
 
+    //puzzle 2 space
+
+    //
+
+    public GameObject puzz3b1;
+    public GameObject puzz3Powder1;
+
     //public GameObject bag1;
     public GameObject bag2;
     public GameObject bag3;
@@ -26,7 +33,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        puzz3Powder1.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,6 +53,8 @@ public class GameManager : MonoBehaviour
         }
 
         Puzzle1();
+
+        Puzzle3();
 
     }
 
@@ -98,6 +107,16 @@ public class GameManager : MonoBehaviour
         if (redBear.transform.position.x > 113)
         {
             redBearFree = true;
+        }
+    }
+
+    public void Puzzle3()
+    {
+        bool puzz3B1 = puzz3b1.GetComponent<ButtonScript>().pressed;
+
+        if (puzz3B1)
+        {
+            puzz3Powder1.SetActive(true);
         }
     }
 }
