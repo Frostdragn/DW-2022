@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
         puzz3Powder5.SetActive(false);
         puzz3Powder6.SetActive(false);
 
+        puzz3Passage.transform.position = new Vector3(puzz3Passage.transform.position.x, 4.4f, puzz3Passage.transform.position.z);
+
         fudge.SetActive(false);
         cane.SetActive(false);
         lic.SetActive(false);
