@@ -7,10 +7,15 @@ public class SceneChanger : MonoBehaviour
 {
     public void Game()
     {
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("BaseLevel");
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
     public void Credits()
     {
-
+        SceneManager.LoadScene("Credits");
     }
 }
