@@ -19,6 +19,7 @@ public class SceneChanger : MonoBehaviour
         if (GameManager.gameWin)
         {
             SceneManager.LoadScene("EndScreen");
+            GameManager.gameWin = false;
         }
     }
 
