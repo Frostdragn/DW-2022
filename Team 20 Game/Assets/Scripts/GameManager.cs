@@ -35,11 +35,14 @@ public class GameManager : MonoBehaviour
     public GameObject puzz3Powder5;
     public GameObject puzz3Powder6;
 
-    private bool powder2;
-    private bool powder3;
-    private bool powder4;
-    private bool powder5;
-    private bool powder6;
+    private bool b3trig;
+    private bool b4trig;
+    private bool b5trig;
+    private bool b6trig;
+    private bool b7trig;
+
+    private int powderCount2;
+    private int powderCount3;
 
 
     public GameObject puzz3Wall;
@@ -163,88 +166,88 @@ public class GameManager : MonoBehaviour
         }
 
         //Part 2
-        if (puzz3B3)
+        if (puzz3B3 && !b3trig)
         {
-            if (powder3)
+            if (powderCount2 == 0)
             {
                 puzz3Powder2.SetActive(true);
-                powder2 = true;
+                powderCount2 += 1;
             }
-            else
+            else if (powderCount2 == 1)
             {
                 puzz3Powder3.SetActive(true);
-                powder3 = true;
             }
+            b3trig = true;
 
         }
-        if (puzz3B4)
+        if (puzz3B4 && !b4trig)
         {
-            if (powder3)
+            if (powderCount2 == 0)
             {
                 puzz3Powder2.SetActive(true);
-                powder2 = true;
+                powderCount2 += 1;
             }
-            else
+            else if (powderCount2 == 1)
             {
                 puzz3Powder3.SetActive(true);
-                powder3 = true;
             }
+            b4trig = true;
         }
 
         //Part 3
-        if (puzz3B5)
+        if (puzz3B5 && !b5trig)
         {
-            if (!powder4)
+            if (powderCount3 == 0)
             {
                 puzz3Powder4.SetActive(true);
-                powder4 = true;
+                powderCount3 += 1;
             }
-            else if (powder4 && !powder5)
+            else if (powderCount3 == 1)
             {
                 puzz3Powder5.SetActive(true);
-                powder5 = true;
+                powderCount3 += 1;
             }
-            else if (powder4 && powder5 && !powder6)
+            else if (powderCount3 == 2)
             {
                 puzz3Powder6.SetActive(true);
-                powder6 = true;
             }
+            b5trig = true;
         }
-        if (puzz3B6)
+        if (puzz3B6 && !b6trig)
         {
-            if (!powder4)
+            if (powderCount3 == 0)
             {
                 puzz3Powder4.SetActive(true);
-                powder4 = true;
+                powderCount3 += 1;
             }
-            else if (powder4 && !powder5)
+            else if (powderCount3 == 1)
             {
                 puzz3Powder5.SetActive(true);
-                powder5 = true;
+                powderCount3 += 1;
             }
-            else if (powder4 && powder5 && !powder6)
+            else if (powderCount3 == 2)
             {
                 puzz3Powder6.SetActive(true);
-                powder6 = true;
             }
+            b6trig = true;
         }
-        if (puzz3B7)
+        if (puzz3B7 && !b7trig)
         {
-            if (!powder4)
+            if (powderCount3 == 0)
             {
                 puzz3Powder4.SetActive(true);
-                powder4 = true;
+                powderCount3 += 1;
             }
-            else if (powder4 && !powder5)
+            else if (powderCount3 == 1)
             {
                 puzz3Powder5.SetActive(true);
-                powder5 = true;
+                powderCount3 += 1;
             }
-            else if (powder4 && powder5 && !powder6)
+            else if (powderCount3 == 2)
             {
                 puzz3Powder6.SetActive(true);
-                powder6 = true;
             }
+            b7trig = true;
         }
     }
 }
