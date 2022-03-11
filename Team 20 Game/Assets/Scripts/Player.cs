@@ -205,7 +205,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             landSoundPlayed = false;
-            if (sticky == false)
+            if (!sticky)
             {
                 soundRandom = Random.Range(0, 3);
                 if (soundRandom == 0)
