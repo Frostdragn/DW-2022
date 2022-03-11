@@ -61,12 +61,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && !grouped)
-        //{
-        //    grouped = true;
-        //}
-        if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && grouped)
+        if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Tab) && grouped)
         {
             grouped = false;
         }

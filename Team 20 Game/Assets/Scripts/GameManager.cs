@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject tutorButton;
     public GameObject tutorWall;
 
+    //puzzle 1
     public GameObject puzz1b1;
     public GameObject puzz1b2;
     public GameObject puzz1b3;
@@ -18,13 +19,30 @@ public class GameManager : MonoBehaviour
     public GameObject redBear;
     public static bool redBearFree;
 
-    //puzzle 2 space
-    public GameObject puzz2Mouse;
-    //
-
+    //puzzle 2
     public GameObject puzz3b1;
     public GameObject puzz3b2;
+    public GameObject puzz3b3;
+    public GameObject puzz3b4;
+    public GameObject puzz3b5;
+    public GameObject puzz3b6;
+    public GameObject puzz3b7;
+
     public GameObject puzz3Powder1;
+    public GameObject puzz3Powder2;
+    public GameObject puzz3Powder3;
+    public GameObject puzz3Powder4;
+    public GameObject puzz3Powder5;
+    public GameObject puzz3Powder6;
+
+    private bool powder2;
+    private bool powder3;
+    private bool powder4;
+    private bool powder5;
+    private bool powder6;
+
+
+    public GameObject puzz3Wall;
 
     public GameObject bag1;
     public GameObject bag2;
@@ -35,6 +53,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         puzz3Powder1.SetActive(false);
+        puzz3Powder2.SetActive(false);
+        puzz3Powder3.SetActive(false);
+        puzz3Powder4.SetActive(false);
+        puzz3Powder5.SetActive(false);
+        puzz3Powder6.SetActive(false);
     }
 
     // Update is called once per frame
@@ -113,23 +136,115 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GameObject collisionCheck = collision.gameObject;
-
-        if (collision.tag == "Cheese")
-        {
-            puzz2Mouse.SetActive(false);
-        }
-    }
-
     public void Puzzle3()
     {
         bool puzz3B1 = puzz3b1.GetComponent<ButtonScript>().pressed;
+        bool puzz3B2 = puzz3b2.GetComponent<ButtonScript>().pressed;
+        bool puzz3B3 = puzz3b3.GetComponent<ButtonScript>().pressed;
+        bool puzz3B4 = puzz3b4.GetComponent<ButtonScript>().pressed;
+        bool puzz3B5 = puzz3b5.GetComponent<ButtonScript>().pressed;
+        bool puzz3B6 = puzz3b6.GetComponent<ButtonScript>().pressed;
+        bool puzz3B7 = puzz3b7.GetComponent<ButtonScript>().pressed;
+        //bool puzz3B5 = puzz3b8.GetComponent<ButtonScript>().pressed;
 
+        //part 1
         if (puzz3B1)
         {
             puzz3Powder1.SetActive(true);
+        }
+
+        if (puzz3B2)
+        {
+            puzz3Wall.SetActive(false);
+        }
+        else
+        {
+            puzz3Wall.SetActive(true);
+        }
+
+        //Part 2
+        if (puzz3B3)
+        {
+            if (powder3)
+            {
+                puzz3Powder2.SetActive(true);
+                powder2 = true;
+            }
+            else
+            {
+                puzz3Powder3.SetActive(true);
+                powder3 = true;
+            }
+
+        }
+        if (puzz3B4)
+        {
+            if (powder3)
+            {
+                puzz3Powder2.SetActive(true);
+                powder2 = true;
+            }
+            else
+            {
+                puzz3Powder3.SetActive(true);
+                powder3 = true;
+            }
+        }
+
+        //Part 3
+        if (puzz3B5)
+        {
+            if (!powder4)
+            {
+                puzz3Powder4.SetActive(true);
+                powder4 = true;
+            }
+            else if (powder4 && !powder5)
+            {
+                puzz3Powder5.SetActive(true);
+                powder5 = true;
+            }
+            else if (powder4 && powder5 && !powder6)
+            {
+                puzz3Powder6.SetActive(true);
+                powder6 = true;
+            }
+        }
+        if (puzz3B6)
+        {
+            if (!powder4)
+            {
+                puzz3Powder4.SetActive(true);
+                powder4 = true;
+            }
+            else if (powder4 && !powder5)
+            {
+                puzz3Powder5.SetActive(true);
+                powder5 = true;
+            }
+            else if (powder4 && powder5 && !powder6)
+            {
+                puzz3Powder6.SetActive(true);
+                powder6 = true;
+            }
+        }
+        if (puzz3B7)
+        {
+            if (!powder4)
+            {
+                puzz3Powder4.SetActive(true);
+                powder4 = true;
+            }
+            else if (powder4 && !powder5)
+            {
+                puzz3Powder5.SetActive(true);
+                powder5 = true;
+            }
+            else if (powder4 && powder5 && !powder6)
+            {
+                puzz3Powder6.SetActive(true);
+                powder6 = true;
+            }
         }
     }
 }
