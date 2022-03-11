@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         }
         if (CranePieces.Cpiece)
         {
-            puzz3Passage.transform.position = new Vector3(puzz3Passage.transform.position.x, -19.29f, puzz3Passage.transform.position.z);
+            puzz3Passage.transform.position = new Vector3(puzz3Passage.transform.position.x, -4.64f, puzz3Passage.transform.position.z);
         }
 
         bool tutorB = tutorButton.GetComponent<ButtonScript>().pressed;
@@ -182,6 +182,7 @@ public class GameManager : MonoBehaviour
 
             bag1.SetActive(true);
             bag4.SetActive(true);
+            bag5.SetActive(true);
         }
         else
         {
