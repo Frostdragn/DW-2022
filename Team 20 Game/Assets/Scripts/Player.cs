@@ -8,6 +8,17 @@ public class Player : MonoBehaviour
     private BoxCollider2D _box;
     private SpriteRenderer _sprite;
 
+    bool landSoundPlayed;
+    public AudioSource audioData;
+    public AudioClip jump1;
+    public AudioClip jump2;
+    public AudioClip jump3;
+    public AudioClip jump4;
+    public AudioClip land1;
+    public AudioClip land2;
+    public AudioClip land3;
+    int soundRandom;
+
     public GameObject indicator;
     public GameObject stickyIn;
     public GameObject bearBag;
@@ -25,6 +36,7 @@ public class Player : MonoBehaviour
     private bool sticky;
     private bool inputs;
     private bool floating;
+
 
     public static Vector3 playerPos;
     // Start is called before the first frame update
@@ -175,6 +187,28 @@ public class Player : MonoBehaviour
         //jumping
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
+            landSoundPlayed = false;
+            if (sticky == false)
+            {
+                soundRandom = Random.Range(0, 3);
+                if (soundRandom == 0)
+                {
+                    audioData.clip = jump1;
+                }
+                else if (soundRandom == 1)
+                {
+                    audioData.clip = jump2;
+                }
+                else if (soundRandom == 2)
+                {
+                    audioData.clip = jump3;
+                }
+                else
+                {
+                    audioData.clip = jump4;
+                }
+                    audioData.Play();
+            }
             inputs = true;
             //sticky = false;
             _body.velocity = new Vector2(moving, 0);
@@ -189,6 +223,26 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 7)
         {
             grounded = true;
+
+            if (landSoundPlayed == false)
+            {
+                soundRandom = Random.Range(0, 2);
+                if (soundRandom == 0)
+                {
+                    audioData.clip = land1;
+                }
+                else if (soundRandom == 1)
+                {
+                    audioData.clip = land2;
+                }
+                else
+                {
+                    audioData.clip = land3;
+                }
+                audioData.Play();
+                landSoundPlayed = true;
+            }
+            
 
             if (this.gameObject != ChosenGummy.chosenPlayer)
             {
