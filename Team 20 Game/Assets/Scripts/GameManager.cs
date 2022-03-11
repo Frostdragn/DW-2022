@@ -19,13 +19,14 @@ public class GameManager : MonoBehaviour
     public static bool redBearFree;
 
     //puzzle 2 space
-
+    public GameObject puzz2Mouse;
     //
 
     public GameObject puzz3b1;
+    public GameObject puzz3b2;
     public GameObject puzz3Powder1;
 
-    //public GameObject bag1;
+    public GameObject bag1;
     public GameObject bag2;
     public GameObject bag3;
     public GameObject bag4;
@@ -73,10 +74,12 @@ public class GameManager : MonoBehaviour
                 bag3.SetActive(false);
             }
 
+            bag1.SetActive(true);
             bag4.SetActive(true);
         }
         else
         {
+            bag1.SetActive(false);
             bag2.SetActive(false);
             bag3.SetActive(false);
             bag4.SetActive(false);
@@ -107,6 +110,16 @@ public class GameManager : MonoBehaviour
         if (redBear.transform.position.x > 113)
         {
             redBearFree = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject collisionCheck = collision.gameObject;
+
+        if (collision.tag == "Cheese")
+        {
+            puzz2Mouse.SetActive(false);
         }
     }
 
