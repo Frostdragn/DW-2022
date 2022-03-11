@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private SpriteRenderer _sprite;
+    public Animator _anim;
 
     bool landSoundPlayed;
     public AudioSource audioData;
@@ -22,6 +23,11 @@ public class Player : MonoBehaviour
     public GameObject indicator;
     public GameObject stickyIn;
     public GameObject bearBag;
+
+    public GameObject groundCheck;
+
+    public static bool tutorSolved;
+    public static bool tutorClear;
 
     public int speed = 10;
     private float moving;
@@ -55,11 +61,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && !grouped)
-        {
-            grouped = true;
-        }
-        else if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && grouped)
+
+        //if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && !grouped)
+        //{
+        //    grouped = true;
+        //}
+        if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Return) && grouped)
         {
             grouped = false;
         }
@@ -131,6 +138,7 @@ public class Player : MonoBehaviour
         else
         {
             indicator.SetActive(false);
+            _anim.SetBool("Walking", false);
         }
     }
 
@@ -138,6 +146,15 @@ public class Player : MonoBehaviour
     {
         moving = _body.velocity.x;
         jumping = _body.velocity.y;
+
+        if (moving > 0.5f || moving < -0.5f)
+        {
+            _anim.SetBool("Walking", true);
+        }
+        else
+        {
+            _anim.SetBool("Walking", false);
+        }
 
         if (Input.GetKeyDown("d"))
         {
@@ -222,7 +239,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 7)
         {
-            grounded = true;
+            //grounded = true;
 
             if (landSoundPlayed == false)
             {
