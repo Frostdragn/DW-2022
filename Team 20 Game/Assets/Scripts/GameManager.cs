@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject puzz1Bear;
     public static bool puzz1Solved;
 
+    public GameObject tabSign;
+
     public GameObject redBear;
     public static bool redBearFree;
 
@@ -55,6 +57,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tabSign.SetActive(false);
+
         puzz3Powder1.SetActive(false);
         puzz3Powder2.SetActive(false);
         puzz3Powder3.SetActive(false);
@@ -87,6 +91,11 @@ public class GameManager : MonoBehaviour
 
     public void Bags()
     {
+        if (redBearFree)
+        {
+            tabSign.SetActive(true);
+        }
+
         if (!Player.grouped)
         {
             if (redBearFree)
