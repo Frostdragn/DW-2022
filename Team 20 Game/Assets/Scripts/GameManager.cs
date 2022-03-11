@@ -50,10 +50,27 @@ public class GameManager : MonoBehaviour
 
     public GameObject yellowBear;
 
+    public GameObject puzz3Passage;
+
+    public GameObject butQ1;
+    public GameObject butQ2;
+    public GameObject butQ3;
+    public GameObject butQ4;
+    public GameObject butQ5;
+
+    public GameObject fudge;
+    public GameObject cane;
+    public GameObject lic;
+    public GameObject cCrane;
+
+    public static bool craneBuilt;
+    public static bool gameWin;
+
     public GameObject bag1;
     public GameObject bag2;
     public GameObject bag3;
     public GameObject bag4;
+    public GameObject bag5;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +83,11 @@ public class GameManager : MonoBehaviour
         puzz3Powder4.SetActive(false);
         puzz3Powder5.SetActive(false);
         puzz3Powder6.SetActive(false);
+
+        fudge.SetActive(false);
+        cane.SetActive(false);
+        lic.SetActive(false);
+        cCrane.SetActive(false);
     }
 
     // Update is called once per frame
@@ -76,6 +98,10 @@ public class GameManager : MonoBehaviour
         if (Player.powderSolved)
         {
             yellowBear.SetActive(false);
+        }
+        if (CranePieces.Cpiece)
+        {
+            puzz3Passage.transform.position = new Vector3(puzz3Passage.transform.position.x, -19.29f, puzz3Passage.transform.position.z);
         }
 
         bool tutorB = tutorButton.GetComponent<ButtonScript>().pressed;
@@ -92,6 +118,45 @@ public class GameManager : MonoBehaviour
         Puzzle1();
 
         Puzzle3();
+
+        if (CranePieces.Fpiece && CranePieces.Cpiece && CranePieces.Lpiece)
+        {
+            fudge.SetActive(false);
+            lic.SetActive(false);
+            cane.SetActive(false);
+
+            craneBuilt = true;
+            cCrane.SetActive(true);
+        }
+        else if (CranePieces.Fpiece && CranePieces.Cpiece)
+        {
+            fudge.SetActive(true);
+            cane.SetActive(true);
+        }
+        else if (CranePieces.Fpiece && CranePieces.Lpiece)
+        {
+            fudge.SetActive(true);
+            lic.SetActive(true);
+        }
+        else if (CranePieces.Fpiece)
+        {
+            fudge.SetActive(true);
+        }
+
+        bool Qbutton1 = butQ1.GetComponent<ButtonScript>().pressed;
+        bool Qbutton2 = butQ2.GetComponent<ButtonScript>().pressed;
+        bool Qbutton3 = butQ3.GetComponent<ButtonScript>().pressed;
+        bool Qbutton4 = butQ4.GetComponent<ButtonScript>().pressed;
+        bool Qbutton5 = butQ5.GetComponent<ButtonScript>().pressed;
+
+        if (Qbutton1 && Qbutton2 && Qbutton3 && Qbutton4 && Qbutton5)
+        {
+            if (craneBuilt)
+            {
+                gameWin = true;
+                Debug.Log("YAAAAAAAAAAAAAAAAY");
+            }
+        }
 
     }
 
@@ -124,6 +189,7 @@ public class GameManager : MonoBehaviour
             bag2.SetActive(false);
             bag3.SetActive(false);
             bag4.SetActive(false);
+            bag5.SetActive(false);
         }
     }
 
