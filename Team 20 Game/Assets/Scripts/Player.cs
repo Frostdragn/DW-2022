@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public GameObject stickyIn;
     public GameObject bearBag;
 
+    public GameObject groundCheck;
+
     public static bool tutorSolved;
     public static bool tutorClear;
 
@@ -203,7 +205,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 7)
         {
-            grounded = true;
+            //grounded = true;
 
             if (this.gameObject != ChosenGummy.chosenPlayer)
             {
