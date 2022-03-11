@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     public static bool tutorSolved;
     public static bool tutorClear;
 
+    public static bool powderSolved;
+
     public int speed = 10;
     private float moving;
     private float jumping;
@@ -125,6 +127,11 @@ public class Player : MonoBehaviour
             if (inputs)
             {
                 _body.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+            }
+
+            if (this.gameObject.transform.position.x < -58 && this.gameObject.transform.position.y > 26)
+            {
+                powderSolved = true;
             }
 
             indicator.SetActive(true);

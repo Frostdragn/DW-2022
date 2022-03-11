@@ -46,8 +46,9 @@ public class GameManager : MonoBehaviour
     private int powderCount2;
     private int powderCount3;
 
-
     public GameObject puzz3Wall;
+
+    public GameObject yellowBear;
 
     public GameObject bag1;
     public GameObject bag2;
@@ -71,6 +72,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Bags();
+
+        if (Player.powderSolved)
+        {
+            yellowBear.SetActive(false);
+        }
 
         bool tutorB = tutorButton.GetComponent<ButtonScript>().pressed;
 
@@ -136,6 +142,7 @@ public class GameManager : MonoBehaviour
         else if (puzz1B1 && puzz1B2 && puzz1B3 && ChosenGummy.gummiesTotal == 4)
         {
             puzz1Gate.SetActive(false);
+            puzz1Bear.SetActive(false);
         }
         else
         {

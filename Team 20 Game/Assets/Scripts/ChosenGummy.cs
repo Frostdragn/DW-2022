@@ -29,6 +29,10 @@ public class ChosenGummy : MonoBehaviour
             gummiesTotal += 1;
             GameManager.puzz1Solved = false;
         }
+        if (Player.powderSolved)
+        {
+            gummiesTotal = 5;
+        }
 
         if (!Player.grouped)
         {
