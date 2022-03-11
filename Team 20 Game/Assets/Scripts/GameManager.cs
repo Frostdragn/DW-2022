@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     //public GameObject bag1;
     public GameObject bag2;
     public GameObject bag3;
+    public GameObject bag4;
 
     // Start is called before the first frame update
     void Start()
@@ -62,11 +63,14 @@ public class GameManager : MonoBehaviour
                 bag2.SetActive(false);
                 bag3.SetActive(false);
             }
+
+            bag4.SetActive(true);
         }
         else
         {
             bag2.SetActive(false);
             bag3.SetActive(false);
+            bag4.SetActive(false);
         }
     }
 
