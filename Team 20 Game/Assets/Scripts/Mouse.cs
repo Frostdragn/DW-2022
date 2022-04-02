@@ -8,6 +8,8 @@ public class Mouse : MonoBehaviour
 
     private Vector3 cheesePos;
 
+    public ParticleSystem mousePoof;
+
     void Start()
     {
         cheesePos = cheese.transform.position;
@@ -27,6 +29,7 @@ public class Mouse : MonoBehaviour
         if (collision.tag == "Cheese")
         {
             cheese.SetActive(false);
+            Instantiate(mousePoof, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             this.gameObject.SetActive(false);
         }
     }

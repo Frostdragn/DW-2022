@@ -20,7 +20,11 @@ public class Player : MonoBehaviour
     public AudioClip land3;
     int soundRandom;
 
+    public AudioSource bagPop;
+    public AudioSource walking;
+
     public GameObject indicator;
+    public GameObject indArrow;
     public GameObject stickyIn;
     public GameObject bearBag;
 
@@ -45,6 +49,7 @@ public class Player : MonoBehaviour
     private bool inputs;
     private bool floating;
 
+    public ParticleSystem bagBoom;
 
     public static Vector3 playerPos;
     // Start is called before the first frame update
@@ -66,6 +71,8 @@ public class Player : MonoBehaviour
         if (this.gameObject == ChosenGummy.chosenPlayer && Input.GetKeyDown(KeyCode.Tab) && grouped)
         {
             grouped = false;
+            bagBoom.Play();
+            bagPop.Play();
         }
 
         if (grouped)
@@ -135,11 +142,13 @@ public class Player : MonoBehaviour
             }
 
             indicator.SetActive(true);
+            indArrow.SetActive(true);
 
         }
         else
         {
             indicator.SetActive(false);
+            indArrow.SetActive(false);
             _anim.SetBool("Walking", false);
         }
     }
@@ -162,6 +171,7 @@ public class Player : MonoBehaviour
         {
             faceRight = true;
             faceLeft = false;
+            walking.Play();
         }
         if (Input.GetKeyUp("d") && Input.GetKey("a"))
         {
@@ -171,13 +181,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey("d"))
         {
             inputs = true;
-            //sticky = false;
             _body.velocity = new Vector2(speed, jumping);
         }
         else if (Input.GetKeyUp("d") && !Input.GetKey("a"))
         {
+            walking.Stop();
             inputs = true;
-            //sticky = false;
             _body.velocity = new Vector2((moving / 2), jumping);
         }
 
@@ -185,6 +194,7 @@ public class Player : MonoBehaviour
         {
             faceRight = false;
             faceLeft = true;
+            walking.Play();
         }
         if (Input.GetKeyUp("a") && Input.GetKey("d"))
         {
@@ -194,11 +204,11 @@ public class Player : MonoBehaviour
         if (Input.GetKey("a"))
         {
             inputs = true;
-            //sticky = false;
             _body.velocity = new Vector2(-speed, jumping);
         }
         else if (Input.GetKeyUp("a") && !Input.GetKey("d"))
         {
+            walking.Stop();
             inputs = true;
             _body.velocity = new Vector2((moving / 2), jumping);
         }

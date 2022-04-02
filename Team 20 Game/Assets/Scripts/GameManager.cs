@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
     public GameObject puzz3Powder5;
     public GameObject puzz3Powder6;
 
+    public ParticleSystem powPar1;
+    public ParticleSystem powPar2;
+    public ParticleSystem powPar3;
+
+    private bool b1trig;
     private bool b3trig;
     private bool b4trig;
     private bool b5trig;
@@ -236,9 +241,11 @@ public class GameManager : MonoBehaviour
         //bool puzz3B5 = puzz3b8.GetComponent<ButtonScript>().pressed;
 
         //part 1
-        if (puzz3B1)
+        if (puzz3B1 && !b1trig)
         {
+            powPar1.Play();
             puzz3Powder1.SetActive(true);
+            b1trig = true;
         }
 
         if (puzz3B2)
@@ -255,12 +262,16 @@ public class GameManager : MonoBehaviour
         {
             if (powderCount2 == 0)
             {
+                powPar2.Play();
                 puzz3Powder2.SetActive(true);
                 powderCount2 += 1;
+
             }
             else if (powderCount2 == 1)
             {
+                powPar2.Play();
                 puzz3Powder3.SetActive(true);
+
             }
             b3trig = true;
 
@@ -269,12 +280,16 @@ public class GameManager : MonoBehaviour
         {
             if (powderCount2 == 0)
             {
+                powPar2.Play();
                 puzz3Powder2.SetActive(true);
                 powderCount2 += 1;
+
             }
             else if (powderCount2 == 1)
             {
+                powPar2.Play();
                 puzz3Powder3.SetActive(true);
+
             }
             b4trig = true;
         }
@@ -284,17 +299,23 @@ public class GameManager : MonoBehaviour
         {
             if (powderCount3 == 0)
             {
+                powPar3.Play();
                 puzz3Powder4.SetActive(true);
                 powderCount3 += 1;
+
             }
             else if (powderCount3 == 1)
             {
+                powPar3.Play();
                 puzz3Powder5.SetActive(true);
                 powderCount3 += 1;
+
             }
             else if (powderCount3 == 2)
             {
+                powPar3.Play();
                 puzz3Powder6.SetActive(true);
+
             }
             b5trig = true;
         }
@@ -302,17 +323,23 @@ public class GameManager : MonoBehaviour
         {
             if (powderCount3 == 0)
             {
+                powPar3.Play();
                 puzz3Powder4.SetActive(true);
                 powderCount3 += 1;
+
             }
             else if (powderCount3 == 1)
             {
+                powPar3.Play();
                 puzz3Powder5.SetActive(true);
                 powderCount3 += 1;
+
             }
             else if (powderCount3 == 2)
             {
+                powPar3.Play();
                 puzz3Powder6.SetActive(true);
+
             }
             b6trig = true;
         }
@@ -320,17 +347,23 @@ public class GameManager : MonoBehaviour
         {
             if (powderCount3 == 0)
             {
+                powPar3.Play();
                 puzz3Powder4.SetActive(true);
                 powderCount3 += 1;
+
             }
             else if (powderCount3 == 1)
             {
+                powPar3.Play();
                 puzz3Powder5.SetActive(true);
                 powderCount3 += 1;
+
             }
             else if (powderCount3 == 2)
             {
+                powPar3.Play();
                 puzz3Powder6.SetActive(true);
+
             }
             b7trig = true;
         }

@@ -7,6 +7,8 @@ public class CranePieces : MonoBehaviour
     public static bool Lpiece;
     public static bool Cpiece;
     public static bool Fpiece;
+
+    public GameObject particles;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class CranePieces : MonoBehaviour
         {
             if (collision.gameObject.layer == 7)
             {
+                Instantiate(particles, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
                 Lpiece = true;
                 this.gameObject.SetActive(false);
             }
@@ -36,6 +39,7 @@ public class CranePieces : MonoBehaviour
         {
             if (collision.gameObject.layer == 7)
             {
+                Instantiate(particles, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
                 Cpiece = true;
                 this.gameObject.SetActive(false);
             }
@@ -45,6 +49,7 @@ public class CranePieces : MonoBehaviour
         {
             if (collision.gameObject.layer == 7)
             {
+                Instantiate(particles, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
                 Fpiece = true;
                 this.gameObject.SetActive(false);
             }

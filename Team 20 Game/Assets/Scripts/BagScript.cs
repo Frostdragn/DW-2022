@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BagScript : MonoBehaviour
 {
+    public ParticleSystem particles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class BagScript : MonoBehaviour
 
         if (collision.gameObject.layer == 7)
         {
+            //Instantiate(particles, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             Player.grouped = true;
         }
     }
