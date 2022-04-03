@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public GameObject creditSheet;
+    public GameObject credits;
+    public GameObject mainScreen;
+    public GameObject bears;
 
     private void Start()
     {
-        if (creditSheet != null)
+        if (credits != null)
         {
-            creditSheet.SetActive(false);
+            credits.SetActive(false);
         }
     }
     private void Update()
@@ -29,6 +31,14 @@ public class SceneChanger : MonoBehaviour
     }
     public void Credits()
     {
-        creditSheet.SetActive(true);
+        credits.SetActive(true);
+        mainScreen.SetActive(false);
+        bears.SetActive(false);
+    }
+    public void BackButton()
+    {
+        mainScreen.SetActive(true);
+        credits.SetActive(false);
+        bears.SetActive(true);
     }
 }

@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     public ParticleSystem powPar2;
     public ParticleSystem powPar3;
 
+    public AudioSource sugarFall;
+
     private bool b1trig;
     private bool b3trig;
     private bool b4trig;
@@ -64,8 +66,11 @@ public class GameManager : MonoBehaviour
     public GameObject butQ5;
 
     public GameObject fudge;
+    public GameObject fudgeCheck;
     public GameObject cane;
+    public GameObject caneCheck;
     public GameObject lic;
+    public GameObject licCheck;
     public GameObject cCrane;
 
     public static bool craneBuilt;
@@ -92,8 +97,11 @@ public class GameManager : MonoBehaviour
         puzz3Passage.transform.position = new Vector3(puzz3Passage.transform.position.x, 4.4f, puzz3Passage.transform.position.z);
 
         fudge.SetActive(false);
+        fudgeCheck.SetActive(false);
         cane.SetActive(false);
+        caneCheck.SetActive(false);
         lic.SetActive(false);
+        licCheck.SetActive(false);
         cCrane.SetActive(false);
     }
 
@@ -131,6 +139,9 @@ public class GameManager : MonoBehaviour
             fudge.SetActive(false);
             lic.SetActive(false);
             cane.SetActive(false);
+            fudgeCheck.SetActive(true);
+            caneCheck.SetActive(true);
+            licCheck.SetActive(true);
 
             craneBuilt = true;
             cCrane.SetActive(true);
@@ -139,15 +150,20 @@ public class GameManager : MonoBehaviour
         {
             fudge.SetActive(true);
             cane.SetActive(true);
+            fudgeCheck.SetActive(true);
+            caneCheck.SetActive(true);
         }
         else if (CranePieces.Fpiece && CranePieces.Lpiece)
         {
             fudge.SetActive(true);
             lic.SetActive(true);
+            fudgeCheck.SetActive(true);
+            licCheck.SetActive(true);
         }
         else if (CranePieces.Fpiece)
         {
             fudge.SetActive(true);
+            fudgeCheck.SetActive(true);
         }
 
         bool Qbutton1 = butQ1.GetComponent<ButtonScript>().pressed;
@@ -245,6 +261,7 @@ public class GameManager : MonoBehaviour
         {
             powPar1.Play();
             puzz3Powder1.SetActive(true);
+            sugarFall.Play();
             b1trig = true;
         }
 
@@ -264,14 +281,14 @@ public class GameManager : MonoBehaviour
             {
                 powPar2.Play();
                 puzz3Powder2.SetActive(true);
+                sugarFall.Play();
                 powderCount2 += 1;
-
             }
             else if (powderCount2 == 1)
             {
                 powPar2.Play();
                 puzz3Powder3.SetActive(true);
-
+                sugarFall.Play();
             }
             b3trig = true;
 
@@ -282,14 +299,14 @@ public class GameManager : MonoBehaviour
             {
                 powPar2.Play();
                 puzz3Powder2.SetActive(true);
+                sugarFall.Play();
                 powderCount2 += 1;
-
             }
             else if (powderCount2 == 1)
             {
                 powPar2.Play();
                 puzz3Powder3.SetActive(true);
-
+                sugarFall.Play();
             }
             b4trig = true;
         }
@@ -301,6 +318,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder4.SetActive(true);
+                sugarFall.Play();
                 powderCount3 += 1;
 
             }
@@ -308,6 +326,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder5.SetActive(true);
+                sugarFall.Play();
                 powderCount3 += 1;
 
             }
@@ -315,7 +334,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder6.SetActive(true);
-
+                sugarFall.Play();
             }
             b5trig = true;
         }
@@ -325,6 +344,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder4.SetActive(true);
+                sugarFall.Play();
                 powderCount3 += 1;
 
             }
@@ -332,6 +352,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder5.SetActive(true);
+                sugarFall.Play();
                 powderCount3 += 1;
 
             }
@@ -339,7 +360,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder6.SetActive(true);
-
+                sugarFall.Play();
             }
             b6trig = true;
         }
@@ -349,6 +370,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder4.SetActive(true);
+                sugarFall.Play();
                 powderCount3 += 1;
 
             }
@@ -356,6 +378,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder5.SetActive(true);
+                sugarFall.Play();
                 powderCount3 += 1;
 
             }
@@ -363,7 +386,7 @@ public class GameManager : MonoBehaviour
             {
                 powPar3.Play();
                 puzz3Powder6.SetActive(true);
-
+                sugarFall.Play();
             }
             b7trig = true;
         }

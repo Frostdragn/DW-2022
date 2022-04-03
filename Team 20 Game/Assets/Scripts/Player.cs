@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D _body;
     private BoxCollider2D _box;
+    public BoxCollider2D slipMat;
     private SpriteRenderer _sprite;
     public Animator _anim;
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
 
     public AudioSource bagPop;
     public AudioSource walking;
+    public AudioSource bagGet;
 
     public GameObject indicator;
     public GameObject indArrow;
@@ -83,19 +85,29 @@ public class Player : MonoBehaviour
                 stickyIn.SetActive(false);
                 _body.constraints = RigidbodyConstraints2D.FreezeAll;
                 _box.enabled = false;
+                slipMat.enabled = false;
                 this.gameObject.transform.position = new Vector3(ChosenGummy.chosenPlayer.transform.position.x, ChosenGummy.chosenPlayer.transform.position.y + 2, ChosenGummy.chosenPlayer.transform.position.z);
 
             }
             else
             {
                 bearBag.SetActive(true);
+
+                if (BagScript.bagGot)
+                {
+                    bagGet.Play();
+                    BagScript.bagGot = false;
+                }
             }
         }
         else
         {
             bearBag.SetActive(false);
             _box.enabled = true;
+            slipMat.enabled = true;
         }
+
+
 
         if (this.gameObject == ChosenGummy.chosenPlayer)
         {

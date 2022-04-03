@@ -10,6 +10,8 @@ public class ButtonScript : MonoBehaviour
     public Sprite red;
     public Sprite green;
 
+    public AudioSource pressSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,7 @@ public class ButtonScript : MonoBehaviour
         {
             pressed = true;
             button.sprite = green;
+            pressSound.Play();
         }
     }
 
